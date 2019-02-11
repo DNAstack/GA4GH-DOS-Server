@@ -16,13 +16,10 @@ Global Alliance for Genomics and Health (GA4GH) is an international, nonprofit a
 
 ## Dependency Checklist
 
-* Springboot 1.5.15.
+* Maven 3.x (or use included Maven Wrapper)
 * Java 1.8. (Will not work with Java 10)
 * MYSQL 5.7. (Will not work with MYSQL 8)
-* Keycloak 4.0.0.
-* DOS Server running on http://localhost:8080/.
 * MYSQL running on http://localhost:3306/.
-* Keycloak standalone server running on http://localhost:8180/.
 
 ## Set Up
 
@@ -61,62 +58,12 @@ Should display list of databases, one of which should be named "dos"
 Empty set (0.00 sec)
 ```
 
-### KeyCloak Set Up
+### Use stronger username or password
 
-Download KeyCloak 4.0.0 [here](https://www.keycloak.org/archive/downloads-4.0.0.html).
+As shipped, the server has one user called `dosadmin` with the `admin` role.
 
-Run standalone server on **port 8180**
-```
-$ ./standalone.sh -Djboss.socket.binding.port-offset=100
-```
-
-**KeyCloak Config:**
-* Create a **Realm** called "DNAstack"
-* Create a **Client** called "dos-server-app"
-* Under **Client** change "Valid Redirect URIs" to "*"
-* Create a **Role** called "user"
-* Create a **Users** called "testuser" with password "testuser" and assign to the **Role** "user"
-* Create a **Role** called "admin"
-* Create a **Users** called "adminuser" with password "adminuser" and assign to the **Role** "admin"
-
-### Turn off KeyCloak Authentication
-
-This is not recommended if the DOS Server is being used for commercial purposes, but for demonstration purposes or further development it might be more convient to simply turn off the authentication. This is how one would do so.
-
-Go into the file `src/main/java/com/dnastack/dos/server/config/SecurityConfig.java`.
-
-Change
-```java
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-            super.configure(http);
-
-            http.csrf().disable()
-                .authorizeRequests()
-                //.antMatchers("/noneSecurity").hasRole("admin")
-                .antMatchers("/databundles/**").hasAnyRole("admin","user")
-                .antMatchers("/dataobjects/**").hasRole("admin")
-                .anyRequest()
-                .permitAll();
-
-    } 
-```
-to
-```java
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-            super.configure(http);
-
-            http.csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/noneSecurity").hasRole("admin")
-                //.antMatchers("/databundles/**").hasAnyRole("admin","user")
-                //.antMatchers("/dataobjects/**").hasRole("admin")
-                .anyRequest()
-                .permitAll();
-
-    }
-```
+To set a different username, set the `SECURITY_USER_NAME` environment variable.
+To set a different password, set the `SECURITY_USER_PASSWORD` environment variable.
 
 
 ### Unit Tests
