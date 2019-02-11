@@ -5,26 +5,26 @@ import lombok.Data;
 @Data
 public class ErrorResponse {
 
-	private String msg;
-	private int status;
+    private String msg;
+    private int status;
 
-	// Custom Constructors
-	
-	public ErrorResponse(int status) {
-		this();
-		this.status = status;
-	}
+    // Custom Constructors
 
-	public ErrorResponse(int status, Throwable ex) {
-		this();
-		this.status = status;
-		this.msg = "An unexpected error occurred.";
-	}
+    public ErrorResponse(int status) {
+        this();
+        this.status = status;
+    }
 
-	public ErrorResponse(String msg, int status, Throwable ex) {
-		this();
-		this.status = status;
-		this.msg = msg;
-	}
+    public ErrorResponse(int status, Throwable ex) {
+        this();
+        this.status = status;
+        this.msg = "An unexpected error occurred.";
+    }
+
+    public ErrorResponse(String msg, int status, Throwable ex) {
+        this();
+        this.status = status;
+        this.msg = msg;
+    }
 
 }

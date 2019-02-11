@@ -9,6 +9,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DeleteDataObjectResponse {
 
-	private String data_object_id;
+    private String data_object_id;
 
 }

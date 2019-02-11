@@ -9,6 +9,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class DeleteDataBundleResponse {
 
-	private String data_bundle_id;
+    private String data_bundle_id;
 
 }

@@ -10,28 +10,28 @@ import java.util.Map;
 @Setter
 public class URL {
 
-	private String url;
-	private Map<String, String> system_metadata = new HashMap<String, String>();
-	private Map<String, String> user_metadata = new HashMap<String, String>();
+    private String url;
+    private Map<String, String> system_metadata = new HashMap<String, String>();
+    private Map<String, String> user_metadata = new HashMap<String, String>();
 
-	// Custom Constructors
+    // Custom Constructors
 
-	public URL() {
+    public URL() {
 
-	}
+    }
 
-	public URL(String url, Map<String, String> system_metadata, Map<String, String> user_metadata) {
-		super();
-		this.url = url;
-		this.system_metadata = system_metadata;
-		this.user_metadata = user_metadata;
-	}
+    public URL(String url, Map<String, String> system_metadata, Map<String, String> user_metadata) {
+        super();
+        this.url = url;
+        this.system_metadata = system_metadata;
+        this.user_metadata = user_metadata;
+    }
 
-	public URL(Ga4ghURL ga4ghURL) {
-		super();
-		this.url = ga4ghURL.getUrl();
-		this.system_metadata = ga4ghURL.getSystem_metadata();
-		this.user_metadata = ga4ghURL.getUser_metadata();
-	}
+    public URL(Ga4ghURL ga4ghURL) {
+        super();
+        this.url = ga4ghURL.getUrl();
+        this.system_metadata = ga4ghURL.getSystem_metadata();
+        this.user_metadata = ga4ghURL.getUser_metadata();
+    }
 
 }
