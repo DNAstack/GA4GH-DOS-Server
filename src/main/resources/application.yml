@@ -1,8 +1,6 @@
 server:
-  port: ${PORT:8080}
-  contextPath: ${context.path:/}
-  
-  
+  port: 8101
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/${db.database:dos}?useSSL=false
@@ -21,6 +19,9 @@ security:
     password: dosadmin
     role: admin
 
+management:
+  context-path: /actuator
+
 keycloak:
   principal-attribute: ekeilty
   auth-server-url: http://localhost:8180/auth
@@ -34,3 +35,19 @@ logging:
       hibernate:
         SQL: DEBUG
         type: TRACE
+
+---
+# This profile is only to remove the MySQL dependency from the "contextLoads" test, which gives early feedback that
+# Spring autowiring is likely to work at runtime. Additional Spring integration tests are strongly discouraged because
+# they have an unfavourable cost/benefit ratio as compared to more stable e2e tests and faster, simpler Mockito tests.
+spring:
+  profiles: test
+
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    jpa:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.H2Dialect

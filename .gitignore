@@ -48,6 +48,10 @@ nbactions*.xml
 
 # Maven
 *target*
+dependency-reduced-pom.xml
+pom.xml.versionsBackup
+!.mvn/wrapper/maven-wrapper.jar
+
 *.class
 
 .DS_Store

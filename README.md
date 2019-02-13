@@ -107,8 +107,8 @@ For details on the api topology and how to use to DOS Server, refer to the [GA4G
 Using the `-D` tag, the dos server allows you to specify a number of environment variables. The list of which is below with their defauls:
 
 ```
--Dcontext.path=/
--Dserver.port=8080
+-Dserver.contextPath=/
+-Dserver.port=8101
 -Ddb.database=dos
 -Ddb.username=dos
 -Ddb.password=dos
