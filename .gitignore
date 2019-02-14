@@ -47,7 +47,7 @@ nb-configuration.xml
 nbactions*.xml
 
 # Maven
-*target*
+target/
 dependency-reduced-pom.xml
 pom.xml.versionsBackup
 !.mvn/wrapper/maven-wrapper.jar
