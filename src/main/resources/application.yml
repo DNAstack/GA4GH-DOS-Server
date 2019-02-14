@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/${db.database:dos}?useSSL=false
+    url: jdbc:postgresql://localhost/pgp
     username: ${db.username:dos}
     password: ${db.password:dos}
   jpa:
@@ -11,7 +11,11 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        jdbc:
+          lob:
+            # Fix for cosmetic error on startup `HHH000424: Disabling contextual LOB creation as createClob() method threw error`
+            non_contextual_creation: true
 
 security:
   user:
@@ -37,7 +41,7 @@ logging:
         type: TRACE
 
 ---
-# This profile is only to remove the MySQL dependency from the "contextLoads" test, which gives early feedback that
+# This profile is only to remove the PostgreSQL dependency from the "contextLoads" test, which gives early feedback that
 # Spring autowiring is likely to work at runtime. Additional Spring integration tests are strongly discouraged because
 # they have an unfavourable cost/benefit ratio as compared to more stable e2e tests and faster, simpler Mockito tests.
 spring:
