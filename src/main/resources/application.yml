@@ -33,12 +33,12 @@ keycloak:
   resource: dos-server-app
   public-client: true
 
-logging:
-  level:
-    org:
-      hibernate:
-        SQL: DEBUG
-        type: TRACE
+#logging:
+#  level:
+#    org:
+#      hibernate:
+#        SQL: DEBUG
+#        type: TRACE
 
 ---
 # This profile is only to remove the PostgreSQL dependency from the "contextLoads" test, which gives early feedback that
