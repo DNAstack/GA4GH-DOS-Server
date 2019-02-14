@@ -16,12 +16,12 @@ WORKDIR /build
 ADD target/pom.xml ./
 ADD target/.mvn ./.mvn
 ADD target/mvnw ./
-RUN ./mvnw de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
-RUN ./mvnw versions:set -DnewVersion=${APP_VERSION}
+RUN ./mvnw -B de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
+RUN ./mvnw -B versions:set -DnewVersion=${APP_VERSION}
 
 # Now add sources, which will bust the cache.
 ADD target/src ./src
-RUN ./mvnw -o package -DskipTests=true
+RUN ./mvnw -B -o package -DskipTests=true
 
 ##
 ## Stage 2: Package the runnable test image

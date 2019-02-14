@@ -16,8 +16,8 @@ WORKDIR /build
 ADD target/pom.xml ./
 ADD target/.mvn ./.mvn
 ADD target/mvnw ./
-RUN ./mvnw de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
-RUN ./mvnw versions:set -DnewVersion=${APP_VERSION}
+RUN ./mvnw -B de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
+RUN ./mvnw -B versions:set -DnewVersion=${APP_VERSION}
 
 # Now add sources, which will bust the cache.
 ADD target/src ./src
@@ -28,7 +28,7 @@ ADD target/src ./src
 #     org.apache.maven.artifact.resolver.MultipleArtifactsNotFoundException: Missing:
 # then update the version number of surefire-junit4 in pom.xml under the
 # dynamicDependencies section of go-offline-maven-plugin configuration.
-RUN ./mvnw -o package
+RUN ./mvnw -B -o package
 
 
 ##
