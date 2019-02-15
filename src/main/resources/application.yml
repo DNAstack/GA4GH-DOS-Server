@@ -17,11 +17,15 @@ spring:
             # Fix for cosmetic error on startup `HHH000424: Disabling contextual LOB creation as createClob() method threw error`
             non_contextual_creation: true
 
-security:
-  user:
-    name: dosadmin
+dos-server:
+  admin:
+    username: dosadmin
     password: dosadmin
-    role: admin
+    roles: user,admin
+  user:
+    username: dosuser
+    password: dosuser
+    roles: user
 
 management:
   context-path: /actuator
@@ -35,6 +39,9 @@ keycloak:
 
 #logging:
 #  level:
+#    org:
+#      springframework:
+#        security: DEBUG
 #    org:
 #      hibernate:
 #        SQL: DEBUG

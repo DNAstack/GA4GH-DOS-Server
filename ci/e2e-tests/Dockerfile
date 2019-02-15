@@ -37,6 +37,6 @@ ADD target/e2e-exec-pom.xml /pom.xml
 ADD target/.mvn /.mvn
 ADD target/mvnw /
 COPY --from=0 /build/target/${APP_NAME}*.jar /e2e-tests.jar
-RUN ./mvnw de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
+RUN ./mvnw -B de.qaware.maven:go-offline-maven-plugin:resolve-dependencies
 
 ENTRYPOINT ["./mvnw", "-o", "test"]
