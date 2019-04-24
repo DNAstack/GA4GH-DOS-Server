@@ -39,6 +39,12 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
         private List<String> roles = new ArrayList<>();
     }
 
+    @ConfigurationProperties(prefix = "dos-server.super-admin")
+    @Bean
+    User superAdminUser() {
+        return new User();
+    }
+
     @ConfigurationProperties(prefix = "dos-server.admin")
     @Bean
     User adminUser() {
@@ -68,7 +74,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         InMemoryUserDetailsManagerConfigurer<AuthenticationManagerBuilder> configurer = auth.inMemoryAuthentication();
 
-        Stream.of(adminUser(), regularUser()).forEach(user -> {
+        Stream.of(superAdminUser(), adminUser(), regularUser()).forEach(user -> {
             String username = user.username;
             String password = user.password;
             String[] roles = user.getRoles().toArray(new String[]{});

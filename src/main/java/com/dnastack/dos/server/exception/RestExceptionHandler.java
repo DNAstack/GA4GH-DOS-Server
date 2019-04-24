@@ -99,6 +99,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
      */
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> exception(Exception ex) {
+        log.error("Internal server error", ex);
         ErrorResponse errorResponse = new ErrorResponse(ex.getMessage(), INTERNAL_SERVER_ERROR.value(), ex);
         return buildResponseEntity(errorResponse);
     }

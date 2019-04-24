@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost/pgp
+    url: jdbc:postgresql://localhost/dos
     username: ${db.username:dos}
     password: ${db.password:dos}
   jpa:
@@ -18,6 +18,10 @@ spring:
             non_contextual_creation: true
 
 dos-server:
+  super-admin:
+    username: superadmin
+    password: superadmin
+    roles: user,admin,ACTUATOR
   admin:
     username: dosadmin
     password: dosadmin
@@ -30,17 +34,11 @@ dos-server:
 management:
   context-path: /actuator
 
-keycloak:
-  principal-attribute: ekeilty
-  auth-server-url: http://localhost:8180/auth
-  realm: DNAstack
-  resource: dos-server-app
-  public-client: true
-
 #logging:
 #  level:
 #    org:
 #      springframework:
+#        web: DEBUG
 #        security: DEBUG
 #    org:
 #      hibernate:
