@@ -23,7 +23,7 @@ public class DataBundle {
     private Map<String, String> system_metadata = new HashMap<String, String>();
     private Map<String, String> user_metadata = new HashMap<String, String>();
 
-    // Custom Constructors
+    //Custom Constructors
 
     public DataBundle() {
 
